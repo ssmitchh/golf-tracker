@@ -276,44 +276,88 @@ function holeObject(holeNumber, par, dist, score){
 
 // ============================================ FUNCTIONS ========================================================= //
 
-function addScore(){
+function submitScore(){
+    var courseName = document.getElementById("courseSelection").value;
 
-    var newScore = new score(course, date, holes);
+    var scoreDate = document.getElementById("dateInput").value;
+    console.log(scoreDate)
+
+    var holes = [];
+
+    // Adding the hole input data to an array
+
+    if(courseName === "hutt park"){
+        for(i = 0; i < 9; i++){
+
+            var holeNumber = i+1;
+            var holeName = "hole" + holeNumber + "input";
+    
+            var holeInput = document.getElementById(holeName);
+            holes.push(holeInput.value)
+    } } else {
+        for(i = 0; i < 18; i++){
+            var holeNumber = i+1;
+            var holeName = "hole" + holeNumber + "input";
+    
+            var holeInput = document.getElementById(holeName);
+            holes.push(holeInput.value)
+
+    }
+
+
+     
+     }
+
+     var scoresArray = getCourseData(courseName, holes);
+
+     
+
+     addScore(courseName, scoreDate, scoresArray)
+
+}
+
+function addScore(course, date, scoresArray){
+    
+
+    var newScore = new score(course, date, scoresArray);
 
     scores.push(newScore);
+    console.log(newScore);
 }
 
 
 // Gets course data to add to the new score object.
-function getCourseData(course, score){
-    var holes = [];
+function getCourseData(course, scores){
 
 
     let courseNameInput = course.toLowerCase();
 
-     courses.forEach(function(element, index) {
+    var scoresArray = [];
+
+     courses.map(element => {
 
         if (courseNameInput === element.courseName.toLowerCase()){
 
-            var holesArray = courses.holes;
+            var holesArray = element.holes;
+            console.log(holesArray)
 
-            holesArray.forEach(function(element, index){
-                let holeNumber = element.holeNumber;
-                let par = element.par;
-                let dist = element.dist
+            holesArray.forEach((individualHole, index) => {
+                let {holeNumber, par, dist} = individualHole;
+                
+                let hole = new holeObject(holeNumber, par, dist, scores[index]);
 
-                let hole = new holeObject(holeNumber, par, dist, score);
-                holes.push(hole);
+                scoresArray.push(hole);
 
-
-            })
+            });
            
 
         }
         
+    
      });
 
-     return holes;
+     return scoresArray;
+
 
 }
 
@@ -335,6 +379,10 @@ function filterByDate(){
 
 function populateScoreCards(){
 
+}
+
+function populateScoreInput(){
+    var courseName = document.getElementById("courseSelection")
 }
 
 
