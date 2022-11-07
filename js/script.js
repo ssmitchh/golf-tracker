@@ -600,5 +600,5 @@ document.getElementById("addScoreSelector").addEventListener("click", function (
 
 
 // ============================================ ON CLICKS ========================================================= /
-
+document.getElementById('courseSelection').addEventListener('change', populateScoreInput)
 document.getElementById("submitScore").addEventListener("click", submitScore)
