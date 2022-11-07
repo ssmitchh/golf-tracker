@@ -94,6 +94,12 @@ body {
         
         flex-direction: column;
         height: 100vh;
+
+
+       .fa-arrow-left{
+        position: absolute;
+        height: 60px;
+       }
        
         .addscore-content-container{
             flex-direction: row;
