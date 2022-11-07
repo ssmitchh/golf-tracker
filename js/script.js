@@ -1,5 +1,10 @@
 // ============================================ ARRAYS ========================================================= //
 
+
+// resize 
+
+
+
 const courses = [
 
     {
@@ -340,7 +345,7 @@ function populateScoreCards(){
 
 
 var images = ['.img1', '.img2', '.img3'];
-var bg = document.querySelector('.full');
+var bg = document.querySelector('.nav-map');
 
 function dim(index) {
   bg.classList.add('full--dim');
@@ -362,8 +367,8 @@ function unDim() {
   });
 }
 
-bg.addEventListener("mouseenter", (event) => { dim(); });
-bg.addEventListener("mouseleave", (event) => { unDim(); });
+// bg.addEventListener("mouseenter", (event) => { dim(); });
+// bg.addEventListener("mouseleave", (event) => { unDim(); });
 images.forEach((selector, i) => {
   var elem = document.querySelector(selector);
   ((i) => {
@@ -371,3 +376,4 @@ images.forEach((selector, i) => {
   })(i);
   elem.addEventListener("mouseleave", (event) => { unDim(); });
 });
+
