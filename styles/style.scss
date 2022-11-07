@@ -94,8 +94,13 @@ body {
     animation: background-image-change, 5s;
         
         flex-direction: column;
-        height: 100px;
-        width: 100px;
+        height: 100vh;
+
+
+       .fa-arrow-left{
+        position: absolute;
+        height: 60px;
+       }
        
         .addscore-content-container{
             flex-direction: row;

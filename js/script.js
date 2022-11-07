@@ -279,7 +279,7 @@ function holeObject(holeNumber, par, dist, score){
 function submitScore(){
     var courseName = document.getElementById("courseSelection").value;
 
-    var scoreDate = document.getElementById("dateInput").value;
+    var scoreDate = document.getElementById("dateInput").value ? document.getElementById("dateInput").value: new Date().toISOString().slice(0,10);
     console.log(scoreDate)
 
     var holes = [];
@@ -312,7 +312,18 @@ function submitScore(){
 
      
 
-     addScore(courseName, scoreDate, scoresArray)
+     addScore(courseName, scoreDate, scoresArray);
+     submitSuccess();
+
+}
+
+function submitSuccess(){
+ var inputContainer = document.getElementById("inputContainer")
+
+ inputContainer.innerHTML = `
+ <h1>Your score has been added</h1>
+ `
+
 
 }
 
@@ -433,7 +444,7 @@ function populateScoreInput(){
         
         
        
-        
+
         
     </div>
     
@@ -447,40 +458,40 @@ function populateScoreInput(){
         <div class="holes-side1">
         <div class="hole-input-group">
             <label for="hole1input">Hole 1</label>
-            <input type="number" class="hole-input" id="hole1input" min="1">
+            <input type="number" class="hole-input" id="hole1input" min="1" required>
         </div>
 
         <div class="hole-input-group">
             <label for="hole1input">Hole 2</label>
-            <input type="number" class="hole-input" id="hole2input" min="1"></div>
+            <input type="number" class="hole-input" id="hole2input" min="1"  required></div>
         <div class="hole-input-group">
             <label for="hole1input">Hole 3</label>
-            <input type="number" id="hole3input" class="hole-input" min="1">
+            <input type="number" id="hole3input" class="hole-input" min="1" required>
         </div>
         <div class="hole-input-group">
             <label for="hole1input">Hole 4</label>
-            <input type="number" id="hole4input" class="hole-input" min="1">
+            <input type="number" id="hole4input" class="hole-input" min="1" required>
         </div>
         <div class="hole-input-group">
             <label for="hole1input">Hole 5</label>
-             <input type="number" id="hole5input" class="hole-input" min="1">
+             <input type="number" id="hole5input" class="hole-input" min="1" required>
         </div>
         <div class="hole-input-group">
             <label for="hole1input">Hole 6</label>
-            <input type="number" id="hole6input" class="hole-input" min="1">
+            <input type="number" id="hole6input" class="hole-input" min="1" required>
         </div>
         <div class="hole-input-group">
             <label for="hole1input">Hole 7</label>
-             <input type="number" id="hole7input" class="hole-input" min="1">
+             <input type="number" id="hole7input" class="hole-input" min="1" required>
         </div>
         <div class="hole-input-group">
             <label for="hole1input">Hole 8</label>
-            <input type="number" id="hole8input" class="hole-input" min="1">
+            <input type="number" id="hole8input" class="hole-input" min="1" required>
         </div>
         <div class="hole-input-group">
             <label for="hole1input">Hole 9
             </label>
-            <input type="number" id="hole9input" class="hole-input" min="1">
+            <input type="number" id="hole9input" class="hole-input" min="1" required>
         </div>
 
 
@@ -494,40 +505,40 @@ function populateScoreInput(){
     <div class="holes-side2 ">
          <div class="hole-input-group">
             <label for="hole10input">Hole 10</label>
-            <input type="number" class="hole-input" id="hole10input" min="1">
+            <input type="number" class="hole-input" id="hole10input" min="1" required>
         </div>
         <div class="hole-input-group">
             <label for="hole11input">Hole 11
             </label>
-            <input type="number" id="hole11input" class="hole-input" min="1">
+            <input type="number" id="hole11input" class="hole-input" min="1" required>
         </div>
 
         <div class="hole-input-group">
             <label for="hole12input">Hole 12</label>
-            <input type="number" class="hole-input" id="hole12input" min="1"></div>
+            <input type="number" class="hole-input" id="hole12input" min="1" required></div>
         <div class="hole-input-group">
             <label for="hole13input">Hole 13</label>
-            <input type="number" id="hole13input" class="hole-input" min="1">
+            <input type="number" id="hole13input" class="hole-input" min="1" required>
         </div>
         <div class="hole-input-group">
             <label for="hole14input">Hole 14</label>
-            <input type="number" id="hole14input" class="hole-input" min="1">
+            <input type="number" id="hole14input" class="hole-input" min="1" required>
         </div>
         <div class="hole-input-group">
             <label for="hole15input">Hole 15</label>
-             <input type="number" id="hole15input" class="hole-input" min="1">
+             <input type="number" id="hole15input" class="hole-input" min="1" required>
         </div>
         <div class="hole-input-group">
             <label for="hole16input">Hole 16</label>
-            <input type="number" id="hole16input" class="hole-input" min="1">
+            <input type="number" id="hole16input" class="hole-input" min="1" required>
         </div>
         <div class="hole-input-group">
             <label for="hole17input">Hole 17</label>
-             <input type="number" id="hole17input" class="hole-input" min="1">
+             <input type="number" id="hole17input" class="hole-input" min="1" required>
         </div>
         <div class="hole-input-group">
             <label for="hole18input">Hole 18</label>
-            <input type="number" id="hole18input" class="hole-input" min="1">
+            <input type="number" id="hole18input" class="hole-input" min="1" required>
         </div>
         
     </div>
