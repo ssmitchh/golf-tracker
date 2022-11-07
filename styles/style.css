@@ -172,7 +172,8 @@ body {
   height: 30px;
   justify-content: space-between;
 }
-.add-score-overlay .addscore-content-container .input-container .hole-inputs .submit-container {
+
+.submit-container {
   display: flex;
   position: absolute;
   right: 0px;
@@ -186,7 +187,7 @@ body {
   justify-content: center;
   align-content: center;
 }
-.add-score-overlay .addscore-content-container .input-container .hole-inputs .submit-container :hover {
+.submit-container :hover {
   cursor: pointer;
 }
 
