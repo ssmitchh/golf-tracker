@@ -382,8 +382,8 @@ function populateScoreCards(){
 }
 
 function populateScoreInput(){
-    var courseName = document.getElementById("courseSelection")
-    var holeInputs = document.getElementById("holeInputs")
+    var courseName = document.getElementById("courseSelection");
+    var holeInputs = document.getElementById("holeInputs");
 
     if (courseName.value === "hutt park"){
         
@@ -584,7 +584,7 @@ document.getElementById("addScoreSelector").addEventListener("click", function (
     var addScoreOverlay = document.getElementById("addScoreOverlay")
     siteContentOverlay.classList.remove("hidden")
     addScoreOverlay.classList.remove("hidden")
-   
+   populateScoreInput();
 })
 
 
