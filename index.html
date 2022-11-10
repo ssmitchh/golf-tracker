@@ -11,58 +11,223 @@
 </head>
 
 <body>
-    <div class="nav-map">
-        <div class="img full" id="pageBackground"></div>
-        <div class="img partial img1 addScore" id="addScoreSelector"></div>
+    <div class="nav-map" id="navMap">
+
+        <div class="img full"></div>
+        <div class="img partial img1 addScore" id="addScoreSelector">
+             
+
+        </div>
         <div class="img partial img2 checkScore" id="checkScoreSelector"></div>
         <div class="img partial img3"></div>
-    </div>
 
-    <div class="site-content-overlay hidden" id="siteContentOverlay">
-        <div class="add-score-overlay hidden" id="addScoreOverlay">
-            <div class="back-button-section"> <i class="fa-solid fa-arrow-left"></i> </div>
-            <div class="addscore-content-container">
-                <div class="page-description">
+        <!-- <div class="page-titles-container">
+             <div class="page-description">
+                    <div class="page-flag"><img class="flag " src="../golf-tracker/img/flag.png" alt="" srcset=""></div>
                     <div class="page-number">
                         <h1>1</h1>
                     </div>
 
-                    <div class="page-title">
+                    <div class="page-title" id="pageTitleAddScore">
+                        Add a new score
+                    </div>
+
+
+        </div> -->
+
+    </div>
+
+    <div class="site-content-overlay hidden" id="siteContentOverlay">
+        <div class="add-score-overlay hidden" id="addScoreOverlay">
+            <!-- <div class="img1 " id="addScoreBG"></div> -->
+            <div class="back-button-section"> <i class="fa-solid fa-arrow-left backButton"></i> </div>
+            <div class="addscore-content-container">
+                <div class="page-description">
+                    <div class="page-flag"><img class="flag " src=".\img\flag.png" alt="" srcset=""></div>
+                    <div class="page-number">
+                        <h1>1</h1>
+                    </div>
+
+                    <div class="page-title" id="pageTitleAddScore">
                         Add a new score
                     </div>
 
                 </div>
                 <div class="input-container" id="inputContainer">
                     <div class="course-selector">
-                       COURSE
-                        <select name="courses" id="courseSelection" class="course-selector-input">
-                            <option value="hutt park">Hutt Park</option>
-                            <option value="shandon">Shandon</option>
-                            <option value="trentham">Trentham</option>
+                        COURSE
 
-                        </select>
+                        
+                            <select name="courses" id="courseSelection" class="course-selector-input">
+                                <option disabled value="hutt park">All courses</option>
+                                <option value="hutt park">Hutt Park</option>
+                                <option value="shandon">Shandon</option>
+                                <option value="trentham">Trentham</option>
 
-                        <div class="date-input">
-                            <input type="date" name="" id="dateInput" class="course-selector-input" required>
-                        </div>
+                            </select>
+
+                            <div class="date-input">
+                                <input type="date" name="" id="dateInput" class="course-selector-input"  >
+                            </div>
 
 
                     </div>
-                    <div class="hole-inputs" id="holeInputs"></div>
+                    <div class="hole-inputs" id="holeInputs">
+                        <div class="holes-side1">
+
+                            
+
+                                <div class="hole-input-group">
+                                    <label for="hole1input">Hole 1</label>
+                                    <input type="number" class="hole-input" id="hole1input" min="1"  >
+                                </div>
+
+                                <div class="hole-input-group">
+                                    <label for="hole2input">Hole 2</label>
+                                    <input type="number" class="hole-input" id="hole2input" min="1"  ></div>
+                                <div class="hole-input-group">
+                                    <label for="hole3input">Hole 3</label>
+                                    <input type="number" id="hole3input" class="hole-input" min="1"  >
+                                </div>
+                                <div class="hole-input-group">
+                                    <label for="hole4input">Hole 4</label>
+                                    <input type="number" id="hole4input" class="hole-input" min="1"  >
+                                </div>
+                                <div class="hole-input-group">
+                                    <label for="hole5input">Hole 5</label>
+                                    <input type="number" id="hole5input" class="hole-input" min="1"  >
+                                </div>
+                                <div class="hole-input-group">
+                                    <label for="hole6input">Hole 6</label>
+                                    <input type="number" id="hole6input" class="hole-input" min="1"  >
+                                </div>
+                                <div class="hole-input-group">
+                                    <label for="hole7input">Hole 7</label>
+                                    <input type="number" id="hole7input" class="hole-input" min="1"  >
+                                </div>
+                                <div class="hole-input-group">
+                                    <label for="hole8input">Hole 8</label>
+                                    <input type="number" id="hole8input" class="hole-input" min="1"  >
+                                </div>
+                                <div class="hole-input-group">
+                                    <label for="hole9input">Hole 9
+                                    </label>
+                                    <input type="number" id="hole9input" class="hole-input" min="1"  >
+                                </div>
+
+
+
+
+
+
+
+
+                        </div>
+                        <div class="holes-side2 hidden" id="holesSide2">
+                            <div class="hole-input-group">
+                                <label for="hole10input">Hole 10</label>
+                                <input type="number" class="hole-input" id="hole10input" min="1"  >
+                            </div>
+                            <div class="hole-input-group">
+                                <label for="hole11input">Hole 11
+                                </label>
+                                <input type="number" id="hole11input" class="hole-input" min="1"  >
+                            </div>
+
+                            <div class="hole-input-group">
+                                <label for="hole12input">Hole 12</label>
+                                <input type="number" class="hole-input" id="hole12input" min="1"  ></div>
+                            <div class="hole-input-group">
+                                <label for="hole13input">Hole 13</label>
+                                <input type="number" id="hole13input" class="hole-input" min="1"  >
+                            </div>
+                            <div class="hole-input-group">
+                                <label for="hole14input">Hole 14</label>
+                                <input type="number" id="hole14input" class="hole-input" min="1"  >
+                            </div>
+                            <div class="hole-input-group">
+                                <label for="hole15input">Hole 15</label>
+                                <input type="number" id="hole15input" class="hole-input" min="1"  >
+                            </div>
+                            <div class="hole-input-group">
+                                <label for="hole16input">Hole 16</label>
+                                <input type="number" id="hole16input" class="hole-input" min="1"  >
+                            </div>
+                            <div class="hole-input-group">
+                                <label for="hole17input">Hole 17</label>
+                                <input type="number" id="hole17input" class="hole-input" min="1"  >
+                            </div>
+                            <div class="hole-input-group">
+                                <label for="hole18input">Hole 18</label>
+                                <input type="number" id="hole18input" class="hole-input" min="1"  >
+                            </div>
+
+                        </div>
+
+                    </div>
                     <div class="submit-container" id="submitScore" type="submit">
                         SUBMIT
                     </div>
+                    </form>
 
-
-
-                    </select>
                 </div>
             </div>
-        </div>
 
-        <div class="check-score-overlay hidden" id="checkScoreOverlay"></div>
+
+
+
+
+        </div>
     </div>
 
+
+    <div class="check-score-overlay hidden" id="checkScoreOverlay">
+        <div class="back-button-section">
+            <i class="fa-solid fa-arrow-left backButton"></i>
+        </div>
+        <div class="check-score-content-container">
+            <div class="score-container" id="scoreCardContainer">
+               
+            </div>
+            <div class="filter-selector-container">
+                
+            
+
+                <select id="filterCourse" class="course-selector-input">
+
+                    <option value="all">All courses</option>
+                    <option value="hutt park">Hutt Park</option>
+                    <option value="shandon">Shandon</option>
+                    <option value="trentham">Trentham</option>
+
+                </select>
+                <select id="filterHole" class="course-selector-input">
+
+                    
+                </select>
+                
+                <select id="filterPar" class="course-selector-input">
+
+
+                </select>
+
+
+            </div>
+            <div class="page-description">
+                <div class="page-flag"><img class="flag " src=".\img\flag.png"" alt="" srcset=""></div>
+                <div class="page-number">
+                    <h1>2</h1>
+                </div>
+
+                <div class="page-title" id="pageTitleCheckScore">
+                    Check scores
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    </div>
 
     <script src="https://kit.fontawesome.com/bef075bc5c.js" crossorigin="anonymous"></script>
     <script src="js/script.js"></script>

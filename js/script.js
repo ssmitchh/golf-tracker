@@ -3,14 +3,11 @@
 
 // resize 
 
-
-
 const courses = [
 
     {
         courseName: "Hutt Park",
-        holes: [
-            {
+        holes: [{
                 holeNumber: 1,
                 par: 3,
                 dist: 128
@@ -59,8 +56,7 @@ const courses = [
     },
     {
         courseName: "Shandon",
-        holes: [
-            {
+        holes: [{
                 holeNumber: 1,
                 par: 5,
                 dist: 405
@@ -154,8 +150,7 @@ const courses = [
     },
     {
         courseName: "Trentham",
-        holes: [
-            {
+        holes: [{
                 holeNumber: 1,
                 par: 5,
                 dist: 458
@@ -251,21 +246,41 @@ const courses = [
 
 ]
 
+
+
 let scores = [
-    
+    // {
+    //     course: ,
+    //     date: ,
+    //     holes: [
+    //         {
+    //             holeNumber: ,
+    //             par: ,
+    //             dist: ,
+    //             score: 
+    //         },
+    //          {
+    //             holeNumber: ,
+    //             par: ,
+    //             dist: ,
+    //             score: 
+    //         }
+    //     ]
+    // }
+
 ]
 
 // ============================================ OBJECTS ========================================================= //
 
 
-function score(course, date, holes){
+function score(course, date, holes) {
     this.course = course;
     this.date = date;
     this.holes = holes;
 
 }
 
-function holeObject(holeNumber, par, dist, score){
+function holeObject(holeNumber, par, dist, score) {
     this.holeNumber = holeNumber;
     this.par = par;
     this.dist = dist;
@@ -274,61 +289,112 @@ function holeObject(holeNumber, par, dist, score){
 }
 
 
-// ============================================ FUNCTIONS ========================================================= //
+// ============================================ ADD SCORE FUNCTIONS ========================================================= //
 
-function submitScore(){
+function formCheck() {
+    console.log("reached form check function");
+    var courseName = document.getElementById("courseSelection")
+    console.log(courseName.value);
+    var error = false;
+    var inputData = [];
+
+    if (courseName.value === "hutt park") {
+        for (i = 0; i < 9; i++) {
+            console.log("in for loop hutt park");
+            var inputId = "hole" + (i + 1) + "input";
+            var inputValue = document.getElementById(inputId).value;
+
+            inputData.push(inputValue);
+
+        }
+    } else {
+        for (i = 0; i < 18; i++) {
+            var inputId = "hole" + (i + 1) + "input";
+            console.log(inputId);
+            var inputValue = document.getElementById(inputId).value;
+            inputData.push(inputValue);
+
+        }
+    }
+
+
+
+
+    for (i = 0; i < inputData.length; i++) {
+
+
+
+        if (inputData[i].value === '') {
+            // throw error
+            alert("Please make sure you have entered a score for every hole")
+            populateScoreInput();
+            error = true;
+            break;
+        }
+
+        if (!error) {
+            submitScore();
+        }
+
+    }
+
+
+
+
+}
+
+
+function submitScore() {
     var courseName = document.getElementById("courseSelection").value;
 
-    var scoreDate = document.getElementById("dateInput").value ? document.getElementById("dateInput").value: new Date().toISOString().slice(0,10);
+    var scoreDate = document.getElementById("dateInput").value ? document.getElementById("dateInput").value : new Date().toISOString().slice(0, 10);
     console.log(scoreDate)
 
     var holes = [];
 
     // Adding the hole input data to an array
 
-    if(courseName === "hutt park"){
-        for(i = 0; i < 9; i++){
+    if (courseName === "hutt park") {
+        for (i = 0; i < 9; i++) {
 
-            var holeNumber = i+1;
+            var holeNumber = i + 1;
             var holeName = "hole" + holeNumber + "input";
-    
+
             var holeInput = document.getElementById(holeName);
             holes.push(holeInput.value)
-    } } else {
-        for(i = 0; i < 18; i++){
-            var holeNumber = i+1;
+        }
+    } else {
+        for (i = 0; i < 18; i++) {
+            var holeNumber = i + 1;
             var holeName = "hole" + holeNumber + "input";
-    
+
             var holeInput = document.getElementById(holeName);
             holes.push(holeInput.value)
+
+        }
+
+
 
     }
 
+    var scoresArray = getCourseData(courseName, holes);
 
-     
-     }
 
-     var scoresArray = getCourseData(courseName, holes);
 
-     
-
-     addScore(courseName, scoreDate, scoresArray);
-     submitSuccess();
+    addScore(courseName, scoreDate, scoresArray);
+    submitSuccess();
 
 }
 
-function submitSuccess(){
- var inputContainer = document.getElementById("inputContainer")
-
- inputContainer.innerHTML = `
- <h1>Your score has been added</h1>
- `
+function submitSuccess() {
+    alert("Your score has been added")
+    console.log(scores);
 
 
 }
 
-function addScore(course, date, scoresArray){
-    
+function addScore(course, date, scoresArray) {
+
 
     var newScore = new score(course, date, scoresArray);
 
@@ -338,216 +404,433 @@ function addScore(course, date, scoresArray){
 
 
 // Gets course data to add to the new score object.
-function getCourseData(course, scores){
+function getCourseData(course, scores) {
 
 
     let courseNameInput = course.toLowerCase();
 
     var scoresArray = [];
 
-     courses.map(element => {
+    courses.map(element => {
 
-        if (courseNameInput === element.courseName.toLowerCase()){
+        if (courseNameInput === element.courseName.toLowerCase()) {
 
             var holesArray = element.holes;
             console.log(holesArray)
 
             holesArray.forEach((individualHole, index) => {
-                let {holeNumber, par, dist} = individualHole;
-                
+                let {
+                    holeNumber,
+                    par,
+                    dist
+                } = individualHole;
+
                 let hole = new holeObject(holeNumber, par, dist, scores[index]);
 
                 scoresArray.push(hole);
 
             });
-           
+
 
         }
-        
-    
-     });
 
-     return scoresArray;
+
+    });
+
+    return scoresArray;
 
 
 }
 
-function filterByPar(){
-
-}
-
-function filterByCourse(){
-
-}
-
-function filterByHole(){
-
-}
-
-function filterByDate(){
-
-}
-
-function populateScoreCards(){
-
-}
-
-function populateScoreInput(){
-    var courseName = document.getElementById("courseSelection");
-    var holeInputs = document.getElementById("holeInputs");
-
-    if (courseName.value === "hutt park"){
-        
-
-        holeInputs.innerHTML =  `
-        <div class="holes-side1">
-        <div class="hole-input-group">
-            <label for="hole1input">Hole 1</label>
-            <input type="number" class="hole-input" id="hole1input" min="1">
-        </div>
-
-        <div class="hole-input-group">
-            <label for="hole1input">Hole 2</label>
-            <input type="number" class="hole-input" id="hole2input" min="1"></div>
-        <div class="hole-input-group">
-            <label for="hole1input">Hole 3</label>
-            <input type="number" id="hole3input" class="hole-input" min="1">
-        </div>
-        <div class="hole-input-group">
-            <label for="hole1input">Hole 4</label>
-            <input type="number" id="hole4input" class="hole-input" min="1">
-        </div>
-        <div class="hole-input-group">
-            <label for="hole1input">Hole 5</label>
-             <input type="number" id="hole5input" class="hole-input" min="1">
-        </div>
-        <div class="hole-input-group">
-            <label for="hole1input">Hole 6</label>
-            <input type="number" id="hole6input" class="hole-input" min="1">
-        </div>
-        <div class="hole-input-group">
-            <label for="hole1input">Hole 7</label>
-             <input type="number" id="hole7input" class="hole-input" min="1">
-        </div>
-        <div class="hole-input-group">
-            <label for="hole1input">Hole 8</label>
-            <input type="number" id="hole8input" class="hole-input" min="1">
-        </div>
-        <div class="hole-input-group">
-            <label for="hole1input">Hole 9
-            </label>
-            <input type="number" id="hole9input" class="hole-input" min="1">
-        </div>
 
 
-        
-        
-        
-       
 
-        
-    </div>
-    
-    </div>
+// ============================================ CHECK SCORE FUNCTIONS ========================================================= //
 
-   
-        
-        `
-    } else {
-        holeInputs.innerHTML = `
-        <div class="holes-side1">
-        <div class="hole-input-group">
-            <label for="hole1input">Hole 1</label>
-            <input type="number" class="hole-input" id="hole1input" min="1" required>
-        </div>
+var selectedCourse = "all";
+var selectedHole = "all"
+var selectedPar = "all"
+var filteredScores = [];
+var dataType;
 
-        <div class="hole-input-group">
-            <label for="hole1input">Hole 2</label>
-            <input type="number" class="hole-input" id="hole2input" min="1"  required></div>
-        <div class="hole-input-group">
-            <label for="hole1input">Hole 3</label>
-            <input type="number" id="hole3input" class="hole-input" min="1" required>
-        </div>
-        <div class="hole-input-group">
-            <label for="hole1input">Hole 4</label>
-            <input type="number" id="hole4input" class="hole-input" min="1" required>
-        </div>
-        <div class="hole-input-group">
-            <label for="hole1input">Hole 5</label>
-             <input type="number" id="hole5input" class="hole-input" min="1" required>
-        </div>
-        <div class="hole-input-group">
-            <label for="hole1input">Hole 6</label>
-            <input type="number" id="hole6input" class="hole-input" min="1" required>
-        </div>
-        <div class="hole-input-group">
-            <label for="hole1input">Hole 7</label>
-             <input type="number" id="hole7input" class="hole-input" min="1" required>
-        </div>
-        <div class="hole-input-group">
-            <label for="hole1input">Hole 8</label>
-            <input type="number" id="hole8input" class="hole-input" min="1" required>
-        </div>
-        <div class="hole-input-group">
-            <label for="hole1input">Hole 9
-            </label>
-            <input type="number" id="hole9input" class="hole-input" min="1" required>
-        </div>
+// function getPar(currentScore) {
+//     let res = [];
+
+//     let {
+//         course,
+//         date
+//     } = currentScore;
+//     res.push([course, date, currentScore.holes.filter(el => {
+//         if (el.par === Number(selectedPar)) {
+//             return el
+//         }
+//     })])
+
+//     return res
+// }
+
+// function getCourse(currentScore) {
+//     let res = [];
 
 
-        
-        
-        
-       
-        
-        
-    </div>
-    <div class="holes-side2 ">
-         <div class="hole-input-group">
-            <label for="hole10input">Hole 10</label>
-            <input type="number" class="hole-input" id="hole10input" min="1" required>
-        </div>
-        <div class="hole-input-group">
-            <label for="hole11input">Hole 11
-            </label>
-            <input type="number" id="hole11input" class="hole-input" min="1" required>
-        </div>
+//     let {
+//         course,
+//         date
+//     } = currentScore;
+//     res.push([course, date, currentScore.filter(el => {
+//         if (el.par === Number(selectedPar)) {
+//             return el
+//         }
+//     })])
 
-        <div class="hole-input-group">
-            <label for="hole12input">Hole 12</label>
-            <input type="number" class="hole-input" id="hole12input" min="1" required></div>
-        <div class="hole-input-group">
-            <label for="hole13input">Hole 13</label>
-            <input type="number" id="hole13input" class="hole-input" min="1" required>
-        </div>
-        <div class="hole-input-group">
-            <label for="hole14input">Hole 14</label>
-            <input type="number" id="hole14input" class="hole-input" min="1" required>
-        </div>
-        <div class="hole-input-group">
-            <label for="hole15input">Hole 15</label>
-             <input type="number" id="hole15input" class="hole-input" min="1" required>
-        </div>
-        <div class="hole-input-group">
-            <label for="hole16input">Hole 16</label>
-            <input type="number" id="hole16input" class="hole-input" min="1" required>
-        </div>
-        <div class="hole-input-group">
-            <label for="hole17input">Hole 17</label>
-             <input type="number" id="hole17input" class="hole-input" min="1" required>
-        </div>
-        <div class="hole-input-group">
-            <label for="hole18input">Hole 18</label>
-            <input type="number" id="hole18input" class="hole-input" min="1" required>
-        </div>
-        
-    </div>
+//     return res
+// }
 
-   
-    
-        `
+// function getHole(currentScore) {
+//     let res = [];
+
+//     let {
+//         course,
+//         date
+//     } = currentScore;
+//     res.push([course, date, currentScore.holes.filter(el => {
+//         if (el.holeNumber === Number(selectedHole)) {
+//             return el
+//         }
+//     })])
+//     return res
+// }
+
+function filterDecision() {
+
+    filteredScores = [];
+    dataType = ''
+
+
+    console.log("filter change starts here");
+
+    // scores.forEach((element, index) => {
+
+        var currentScore
+        var courseName
+        var date
+        var holeNumber;
+        var par;
+        var dist;
+        var score;
+        var holes
+
+    scores.forEach(card => {
+        currentScore = card;
+            courseName = card.course;
+            date = card.date;
+            holes = card.holes;
+
+            holes.forEach(hole => {
+
+                holeNumber = hole.holeNumber;
+                par = hole.par;
+                dist = hole.dist;
+                score = hole.score
+                filter(courseName, holeNumber, par, currentScore, date, hole);
+            })
+        })
+    // })
+
+    let removeDuplicates = (filteredScores) => {
+        return [...new Set(filteredScores)];
     }
-   
+
+    filteredScores = removeDuplicates(filteredScores)
+
+    console.table(filteredScores);
+
+    if (dataType === 'card') {
+        card()
+        
+    } else if (dataType === 'table') {
+        table()
+        
+    }
+
+
+
+
+}
+
+function filter(courseName, holeNumber, par, currentScore, date, hole) {
+
+
+    console.log(courseName, holeNumber, par);
+    console.log("reached function");
+    console.log(holeNumber, selectedHole);
+    selectedHole = (selectedHole === NaN || selectedHole === 'all') ? 'all' : Number(selectedHole);
+    selectedPar = (selectedPar === NaN || selectedPar === 'all') ? 'all' : Number(selectedPar);
+
+    if (selectedCourse === "all" && selectedHole === "all" && selectedPar === "all") {
+
+        filteredScores = scores;
+        dataType = 'card'
+
+
+    }
+    // show just course selected - all holes all pars
+    if (selectedCourse === courseName && selectedHole === "all" && selectedPar === "all") {
+        // cards
+        console.log('showing course')
+        filteredScores.push(currentScore);
+
+        dataType = 'card'
+
+
+
+    } // show just hole selected - all course all par
+    if (selectedCourse === "all" && selectedHole === holeNumber && selectedPar === "all") {
+        // table
+        console.log("showing hole: ", holeNumber);
+
+
+        filteredScores.push({
+            courseName,
+            date,
+            hole
+        })
+
+        dataType = 'table'
+
+    } // show just par selected - all course all holes
+    if (selectedCourse === "all" && selectedHole === "all" && selectedPar === par) {
+        // table
+        console.log("showing par: ", par);
+        filteredScores.push({
+            courseName,
+            date,
+            hole
+        })
+
+        dataType = 'table'
+
+    }
+    // show result for course and par --  no hole selected
+    if (selectedCourse === courseName && selectedPar === par && selectedHole == "all") {
+        // table
+        console.log('showing course and par: ', courseName, par)
+        filteredScores.push({
+            courseName,
+            date,
+            hole
+        })
+
+        dataType = 'table'
+    }
+    // show result for course and hole number -- no par selected
+    if (selectedCourse === courseName && selectedHole === holeNumber && selectedPar === "all") {
+        // table
+        console.log('showing course and hole: ', courseName, holeNumber)
+        filteredScores.push({
+            courseName,
+            date,
+            hole
+        })
+
+        dataType = 'table'
+
+    }
+
+
+
+}
+
+
+function table() {
+    var scoreCardContainer = document.getElementById("scoreCardContainer")
+
+    scoreCardContainer.innerHTML = ``
+    
+
+    scoreCardContainer.innerHTML = `
+     <div class="score-table" id="scoreTable">
+     <div class="table-date card-item top">DATE</div>
+                    <div class="table-hole card-item top">HOLE</div>
+                    <div class="table-score card-item top">SCORE</div>
+                    <div class="table-par card-item top">PAR</div>
+                    <div class="table-dist card-item top">DIST</div>
+
+                    </div>
+    `
+
+
+    filteredScores.forEach(element => {
+
+        var scoreTable = document.getElementById("scoreTable")
+
+        scoreTable.innerHTML += `
+        <div class="table-course card-item">${element.courseName.toUpperCase()}</div>
+        <div class="table-date card-item">${element.date}</div>
+          <div class="table-hole card-item">${element.hole.holeNumber}</div>
+                    
+                    <div class="table-score card-item">${element.hole.score}</div>
+                    <div class="table-par card-item">${element.hole.par}</div>
+                    <div class="table-dist card-item">${element.hole.dist}</div>
+        `
+
+    })
+    
+}
+
+
+
+
+function card() {
+    scoreCardContainer.innerHTML = ``
+    
+
+    filteredScores.forEach((element, index) => {
+        var course = element.course.toUpperCase();
+        createScoreCard(course, index);
+
+        var scores = element.holes;
+
+        scores.forEach(element => {
+
+            populateScores(element.par, element.holeNumber, element.score, element.dist, index)
+
+        })
+
+    })
+
+}
+
+function createScoreCard(course, index) {
+    var scoreCardContainer = document.getElementById("scoreCardContainer")
+
+    scoreCardContainer.innerHTML += `
+    <div class="score-card" id = 'scoreCard${index}'>
+
+                    
+       <div class="card-title card-item">${course}</div>
+        <div class="card-total card-item">TOTAL</div>
+        <div class="card-total-number card-item"></div>
+                    
+                    
+        <div class="card-hole card-item">HOLE</div>
+        <div class="card-score card-item">SCORE</div>
+        <div class="card-par card-item">PAR</div>
+        <div class="card-dist card-item">DIST</div>
+                        
+                        
+                </div>
+    `
+}
+
+
+
+function populateScores(par, hole, score, dist, index) {
+
+    var innerScoreCard = document.getElementById(`scoreCard${index}`);
+    innerScoreCard.innerHTML += `
+    <div class="card-hole card-item"> ${hole}</div>
+    <div class="card-score card-item">${score}</div>
+    <div class="card-par card-item">${par}</div>
+    <div class="card-dist card-item">${dist}</div>
+
+    
+    
+    `
+
+
+
+
+
+
+};
+
+// Functions to populate dropdown menus
+
+function populateParSelector() {
+    var parSelector = document.getElementById("filterPar");
+
+
+    var parList = [];
+
+    if (selectedCourse === "all") {
+        courses.forEach(element => {
+            var courseHoles = element.holes;
+
+
+            courseHoles.forEach(element => {
+                var par = element.par;
+
+                if (!(parList.includes(par))) {
+                    parList.push(par);
+                }
+            })
+        })
+
+    } else {
+        courses.forEach(element => {
+            if (element.courseName.toLowerCase() === selectedCourse) {
+                var courseHoles = element.holes;
+                courseHoles.forEach(element => {
+                    var par = element.par;
+
+                    if (!(parList.includes(par))) {
+                        parList.push(par);
+                    }
+                })
+
+            }
+
+        })
+    }
+
+    if (!(selectedHole === "all")) {
+
+        parSelector.disabled = true;
+        selectedPar = "all"
+
+        parList.forEach(element => {
+            parSelector.innerHTML += `<option disabled value="${element}">${element}</option> `
+        })
+
+    } else {
+        parSelector.disabled = false;
+        console.log(selectedHole);
+        parSelector.innerHTML = `<option value="all">All pars</option>`
+        parList.forEach(element => {
+            parSelector.innerHTML += `<option value="${element}">${element}</option> `
+        })
+    }
+
+
+
+};
+
+function populateHoleList() {
+    var holeSelector = document.getElementById("filterHole");
+    holeSelector.innerHTML = `<option value="all">All holes</option>`
+
+    if (selectedCourse === "hutt park" && selectedPar === "all") {
+        holeSelector.disabled = false;
+        for (i = 1; i < 10; i++) {
+            holeSelector.innerHTML += `<option value="${i}">${i}</option>`
+
+        }
+    } else if (selectedPar === "all") {
+        holeSelector.disabled = false;
+        for (i = 1; i < 19; i++) {
+            holeSelector.innerHTML += `<option value="${i}">${i}</option>`
+
+        }
+
+
+    } else if (!selectedPar == "all") {
+        holeSelector.disabled = true;
+        selectedHole = "all"
+    }
+
+
+
 }
 
 
@@ -556,49 +839,169 @@ function populateScoreInput(){
 
 // ============================================ FRONT END VISUALS ========================================================= //
 
+var navMap = document.getElementById("navMap")
+var siteContentOverlay = document.getElementById("siteContentOverlay")
+var addScoreOverlay = document.getElementById("addScoreOverlay")
+var checkScoreOverlay = document.getElementById("checkScoreOverlay")
+
+
 
 var images = ['.img1', '.img2', '.img3'];
 var bg = document.querySelector('.nav-map');
 
 function dim(index) {
-  bg.classList.add('full--dim');
-  images.forEach((selector, i) => {
-    var elem = document.querySelector(selector);
-    if (index >= 0 && index === i) {
-      elem.classList.remove('partial--vanish');
-    } else {
-      elem.classList.add('partial--vanish');
-    }
-  });
+    bg.classList.add('full--dim');
+    images.forEach((selector, i) => {
+        var elem = document.querySelector(selector);
+        if (index >= 0 && index === i) {
+            elem.classList.remove('partial--vanish');
+        } else {
+            elem.classList.add('partial--vanish');
+        }
+    });
 }
 
 function unDim() {
-  bg.classList.remove('full--dim');
-  images.forEach((selector) => {
-    var elem = document.querySelector(selector);
-    elem.classList.remove('partial--vanish');
-  });
+    bg.classList.remove('full--dim');
+    images.forEach((selector) => {
+        var elem = document.querySelector(selector);
+        elem.classList.remove('partial--vanish');
+    });
 }
 
 // bg.addEventListener("mouseenter", (event) => { dim(); });
 // bg.addEventListener("mouseleave", (event) => { unDim(); });
 images.forEach((selector, i) => {
-  var elem = document.querySelector(selector);
-  ((i) => {
-    elem.addEventListener("mouseenter", (event) => { dim(i); });
-  })(i);
-  elem.addEventListener("mouseleave", (event) => { unDim(); });
+    var elem = document.querySelector(selector);
+    ((i) => {
+        elem.addEventListener("mouseenter", (event) => {
+            dim(i);
+        });
+    })(i);
+    elem.addEventListener("mouseleave", (event) => {
+        unDim();
+    });
 });
 
-document.getElementById("addScoreSelector").addEventListener("click", function () {
-   var siteContentOverlay = document.getElementById("siteContentOverlay")
-    var addScoreOverlay = document.getElementById("addScoreOverlay")
-    siteContentOverlay.classList.remove("hidden")
-    addScoreOverlay.classList.remove("hidden")
-   populateScoreInput();
-})
+
 
 
 // ============================================ ON CLICKS ========================================================= /
-document.getElementById('courseSelection').addEventListener('change', populateScoreInput)
-document.getElementById("submitScore").addEventListener("click", submitScore)
+// Open add score page
+document.getElementById("addScoreSelector").addEventListener("click", function () {
+    var pageTitle = document.getElementById("pageTitleAddScore")
+
+    siteContentOverlay.classList.remove("hidden")
+    addScoreOverlay.classList.remove("hidden")
+    // navMap.classList.remove('hidden')
+    navMap.style.animation = "backgroundShiftBigAddScore 3s";
+    navMap.style.transform = "scale(4)";
+    navMap.style.transformOrigin = "top";
+    navMap.style.left = "70vw"
+    pageTitle.style.animation = "open-page-title 3s"
+
+    // populateScoreInput();
+
+})
+
+
+
+// Open check score page
+document.getElementById("checkScoreSelector").addEventListener("click", function () {
+    var pageTitle = document.getElementById("pageTitleCheckScore")
+
+    siteContentOverlay.classList.remove("hidden")
+    checkScoreOverlay.classList.remove("hidden")
+
+    navMap.style.animation = "backgroundShiftBigCheckScore 3s";
+    navMap.style.transform = "scale(4.8)";
+    navMap.style.transformOrigin = "top";
+    navMap.style.top = "-70vh"
+    navMap.style.left = "-10vw"
+    pageTitle.style.animation = "open-page-title 2s"
+
+    populateParSelector();
+    populateHoleList();
+    filterDecision()
+
+})
+
+// Back buttons
+document.querySelectorAll('.backButton').forEach(item => {
+    item.addEventListener('click', event => {
+
+        var targetDiv = event.target.parentElement.parentElement;
+        console.log(targetDiv);
+        var divId = targetDiv.id;
+        siteContentOverlay.classList.toggle("hidden")
+        targetDiv.classList.add("hidden")
+
+        if (divId === "addScoreOverlay") {
+            console.log("in if statement");
+            navMap.style.animation = "backgroundShiftSmallAddScore 3s";
+            navMap.style.transform = "scale(1.6)";
+            navMap.style.transformOrigin = "top";
+            navMap.style.left = "30vw"
+
+        } else if (divId === "checkScoreOverlay") {
+            navMap.style.animation = "backgroundShiftSmallCheckScore 3s";
+            navMap.style.transform = "scale(1.6)";
+            navMap.style.transformOrigin = "top";
+            navMap.style.left = "30vw"
+            navMap.style.top = "5vh"
+
+        }
+
+
+
+
+    });
+});
+
+// **** Add score page clicks and changes ****
+
+var addScoreCourseSelector = document.getElementById("courseSelection");
+addScoreCourseSelector.addEventListener("change", function () {
+    if (addScoreCourseSelector.value === "shandon" || addScoreCourseSelector.value === "trentham") {
+        document.getElementById("holesSide2").classList.remove("hidden")
+    } else {
+        document.getElementById("holesSide2").classList.add("hidden")
+    }
+})
+
+document.getElementById("submitScore").addEventListener("click", formCheck);
+
+// **** Check score page clicks and changes ****
+var courseFilter = document.getElementById("filterCourse");
+courseFilter.addEventListener('change', function () {
+    selectedCourse = courseFilter.value;
+    console.log(selectedCourse);
+
+    populateParSelector();
+    populateHoleList();
+    filterDecision();
+    console.log('course filter func end')
+})
+var holeFilter = document.getElementById("filterHole");
+holeFilter.addEventListener('change', function () {
+    selectedHole = holeFilter.value;
+    populateParSelector();
+
+    filterDecision()
+
+
+    console.log(selectedHole);
+
+})
+
+var parFilter = document.getElementById("filterPar");
+parFilter.addEventListener('change', function () {
+    selectedPar = parFilter.value;
+
+    populateHoleList();
+    filterDecision()
+
+
+
+
+})

@@ -1,244 +1,575 @@
-*{
-    margin: 0;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+* {
+  margin: 0;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+  
 }
 
 body {
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: hidden;
+  background-color: rgb(255, 254, 253);
 }
 
-.hidden{
-    visibility: hidden;
+.hidden {
+  visibility: hidden;
 }
 
 .nav-map {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
+  position: absolute;
+  left: 30vw;
+  
+  justify-content: center;
+  align-items: center;
+  height: 100vw;
+  width: 100vh;
+  top: 5vh;
+  
+  transform:  scale(1.6);
+  transform-origin: top;
+  overflow: hidden;
 
+  
  
 
-    .img {
-        // background-image: url("../img/golf-course-big.png");
-        background-repeat: no-repeat;
-        background-size: contain;
-        transition: opacity 200ms;
-        height: 100vh;
-        width: 100vw;
-        
-       
-    }
+  .page-titles-container {
+    
+   
+    background-color: rgba($color: #000000, $alpha: 0);
+    width: 100%;
+    height: 100%;
+  }
 
-    .img,
-    div {
-        height: 100vh;
-        position: absolute;
-        top: 0;
-        left: 100px;
-        width: 100vh;
-    }
+  .img {
+    width: inherit;
+    height: inherit;
+    position: absolute;
 
-    .img1{
-        
-        
-        clip-path: path("M257.42,7.19C237.57,3.31,235.36,.29,215.09,.02c-6.6-.09-13.48,.07-19.36,2.92-5.07,2.46-8.89,6.68-12.45,10.88-11.9,14.01-22.51,28.99-31.69,44.72-5.56,9.52-10.66,19.42-18.2,27.62-8.76,9.53-20.36,16.29-32.12,22.27-18.61,9.46-38.12,17.35-58.22,23.53-10.08,3.1-20.63,5.93-28.68,12.45C3.06,153.56-1.27,168.74,.32,182.73s8.32,26.99,16.1,38.97c18.07,27.83,46.23,53.71,80.75,54.72,10.63,.31,21.17-1.79,31.5-4.2,22.97-5.35,45.52-12.28,67.43-20.71,33.66-12.95,66.51-29.64,102.58-33.76,19.95-2.28,40.17-.6,60.23-1.75,28.27-1.62,56.17-8.95,81.27-21.36,12.58-6.22,24.82-14.02,32.52-25.29,8.66-12.67,10.68-28.35,11.11-43.44,.23-8.08,.03-16.34-2.9-23.93-2.93-7.59-9.04-14.48-17.26-16.68-7.22-1.93-14.86-.07-22.27,1.02-26,3.82-52.8-2.08-76.6-12.69-23.8-10.61-44.98-25.75-65.51-41.31-14.76-11.19-25.04-16.91-41.84-25.12");
-    }
 
-    .img2{
-        
-        
-        clip-path: path("M520.44,102.48c-3.63-1.01-9.86-1.36-14.67-.04-4.15,1.14-6.82,5.17-6.26,9.43,3.03,23.07,15.06,51.22,.8,68.72-15.04,18.46-37.43,30.79-61.11,33.65-4.58,.55-9.23,.77-13.82,1.25-15.49,1.6-29.28,15.75-30.53,31.23-.36,4.45-.38,8.85,.96,11.98,2.66,6.25,23.21,35.18,28,40,0,0,18.46,18.3,51.07,19.02,32.97,.73,95.82,14.78,126.76,15.34,29.49,.53,57.14-20.18,86.39-16.37,29.31,3.81,55.67,27.48,84.75,22.22,13.43-2.43,24.99-10.87,34.92-20.2,10.77-10.12,20.63-22.34,23.03-36.9,2.54-15.36-3.62-30.84-11.43-44.32-5.67-9.78-12.33-19.08-20.73-26.66-8.91-8.03-19.58-13.93-30.7-18.49-41.61-17.05-88.69-15.59-131.28-30.04-39.29-13.33-76.17-48.68-116.14-59.82");
-    }
 
-    .img3{
-        
-        clip-path: path("M368.26,232.64c-4.89-6.99-32.77-3.67-41.04-2.95-8.27,.71-16.03,4.29-23.65,7.72-48.29,21.74-98.16,39.63-149.05,53.47-15.11,4.11-32.51,9.79-38.05,25.02-1.94,5.33-2.08,11.2-1.61,16.88,2.46,29.5,21.07,55.76,44.84,71.95,23.77,16.19,52.22,23.39,80.45,26.59,28.23,3.2,56.73,2.67,85.05,4.84,88.05,6.75,172.72,39.4,260.66,47.59,3.13,.29,6.56,.48,9.14-1.4,2.98-2.16,3.82-6.31,4.33-10.05,3.19-23.5,2.47-48.04-5.74-70.17-8.21-22.14-24.56-41.63-45.97-49.69-8.75-3.29-18.04-4.63-27.27-5.84-25.73-3.36-51.76-5.85-76.57-13.73-24.81-7.88-48.73-21.78-63.91-43.71-14.97-21.61,7.27-49.94-16.62-59.43");
-    }
+  }
 
-    .full--dim {
-        opacity: 0.5;
-      }
-      
-      .partial--vanish {
-        opacity: 0;
-      }
-
+  
+}
+.img1 {
+  background: #70bf44;
+  clip-path: path("M257.42,7.19C237.57,3.31,235.36,.29,215.09,.02c-6.6-.09-13.48,.07-19.36,2.92-5.07,2.46-8.89,6.68-12.45,10.88-11.9,14.01-22.51,28.99-31.69,44.72-5.56,9.52-10.66,19.42-18.2,27.62-8.76,9.53-20.36,16.29-32.12,22.27-18.61,9.46-38.12,17.35-58.22,23.53-10.08,3.1-20.63,5.93-28.68,12.45C3.06,153.56-1.27,168.74,.32,182.73s8.32,26.99,16.1,38.97c18.07,27.83,46.23,53.71,80.75,54.72,10.63,.31,21.17-1.79,31.5-4.2,22.97-5.35,45.52-12.28,67.43-20.71,33.66-12.95,66.51-29.64,102.58-33.76,19.95-2.28,40.17-.6,60.23-1.75,28.27-1.62,56.17-8.95,81.27-21.36,12.58-6.22,24.82-14.02,32.52-25.29,8.66-12.67,10.68-28.35,11.11-43.44,.23-8.08,.03-16.34-2.9-23.93-2.93-7.59-9.04-14.48-17.26-16.68-7.22-1.93-14.86-.07-22.27,1.02-26,3.82-52.8-2.08-76.6-12.69-23.8-10.61-44.98-25.75-65.51-41.31-14.76-11.19-25.04-16.91-41.84-25.12");
 }
 
+.img2 {
+  background: #70bf44;
+  clip-path: path("M520.44,102.48c-3.63-1.01-9.86-1.36-14.67-.04-4.15,1.14-6.82,5.17-6.26,9.43,3.03,23.07,15.06,51.22,.8,68.72-15.04,18.46-37.43,30.79-61.11,33.65-4.58,.55-9.23,.77-13.82,1.25-15.49,1.6-29.28,15.75-30.53,31.23-.36,4.45-.38,8.85,.96,11.98,2.66,6.25,23.21,35.18,28,40,0,0,18.46,18.3,51.07,19.02,32.97,.73,95.82,14.78,126.76,15.34,29.49,.53,57.14-20.18,86.39-16.37,29.31,3.81,55.67,27.48,84.75,22.22,13.43-2.43,24.99-10.87,34.92-20.2,10.77-10.12,20.63-22.34,23.03-36.9,2.54-15.36-3.62-30.84-11.43-44.32-5.67-9.78-12.33-19.08-20.73-26.66-8.91-8.03-19.58-13.93-30.7-18.49-41.61-17.05-88.69-15.59-131.28-30.04-39.29-13.33-76.17-48.68-116.14-59.82");
+}
 
+.img3 {
+  background: #70bf44;
+  clip-path: path("M368.26,232.64c-4.89-6.99-32.77-3.67-41.04-2.95-8.27,.71-16.03,4.29-23.65,7.72-48.29,21.74-98.16,39.63-149.05,53.47-15.11,4.11-32.51,9.79-38.05,25.02-1.94,5.33-2.08,11.2-1.61,16.88,2.46,29.5,21.07,55.76,44.84,71.95,23.77,16.19,52.22,23.39,80.45,26.59,28.23,3.2,56.73,2.67,85.05,4.84,88.05,6.75,172.72,39.4,260.66,47.59,3.13,.29,6.56,.48,9.14-1.4,2.98-2.16,3.82-6.31,4.33-10.05,3.19-23.5,2.47-48.04-5.74-70.17-8.21-22.14-24.56-41.63-45.97-49.69-8.75-3.29-18.04-4.63-27.27-5.84-25.73-3.36-51.76-5.85-76.57-13.73-24.81-7.88-48.73-21.78-63.91-43.71-14.97-21.61,7.27-49.94-16.62-59.43");
+}
+
+.full--dim {
+  opacity: 1;
+}
+
+.partial--vanish {
+  opacity: 0.6;
+  background: #70bf44;
+}
 
 .site-content-overlay {
-    // z-index: 10;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100vw;
-    height: 100vh;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
 
-    h1{
-        font-size: 3rem;
-    }
-
-    
-       
+  h1 {
+    font-size: 3rem;
+  }
 }
 
- .add-score-overlay{
-    
-       
-    background-image: url("../img/addscore-bg.jpg");
-    background-size: cover;
-    animation: background-image-change, 5s;
-        
-        flex-direction: column;
-        height: 100vh;
+.add-score-overlay {
+  // background-image: url("../img/addscore-bg.jpg");
+ 
+  flex-direction: column;
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
 
+  
 
-       .fa-arrow-left{
-        position: absolute;
-        height: 60px;
-        width: 100px;
-       }
-       
-        .addscore-content-container{
-            flex-direction: row;
-            display: flex;
-            position: relative;
-            height: 100vh;
-
-           
-            .page-description{
-                 position: absolute;
-                bottom: 20px;
-                left: 20px;
-            }
-
-            .page-title{
-                justify-content: center;
-                align-items: center;
-                width: 300px;
-                
-                background-color: white;
-                border: 5px solid black;
-                position: absolute;
-                left: 70px;
-                bottom: 20px;
-                z-index: 5;
-                text-align: end;
-                padding: 20px;
-                transition: ease-in 5s;
-            }
-
-
-            .page-number{
-                position: relative;
-                z-index: 10;
-               
-            
-                border-radius: 50%;
-                border: 5px solid black;
-                background-color: white;
-                height: 100px;
-                width: 100px;
-               
-                align-items: center;
-                justify-content: center;
-                h1{
-                    margin: 30px;
-                }
-            }
-
-            .input-container{
-               position: absolute;
-                width: 100%;
-                height: 85vh;
-                border-left: 5px solid black;
-                border-top: 5px solid black;
-                background-color: rgba($color: #ffffff, $alpha: 0.75);
-                right: 0px;
-                bottom: 0px;
-                border-top-left-radius: 50px;
-                padding: 20px;
-
-                .course-selector{
-                    // width: 20vw;
-                    height: 30px;
-                    margin-left: 50px;
-                    display: flex;
-                    flex-direction: row;
-    
-                    .course-selector-input{
-                          margin-left: 15px;
-                        width: 250px;
-                        height: 40px;
-                    }
-                }
-              
-
-                .hole-inputs{
-                    width: 90%;
-                      display: flex;
-                flex-direction: row;
-                justify-content:space-evenly;
-                align-items:center; 
-                margin: 20px;
-
-                .holes-side1{
-                    margin: 20px;
-                    display: flex;
-                flex-direction: column;
-                justify-content:space-around;
-                }
-                .holes-side2{
-                    width: 40%;
-                    margin: 20px;
-                    display: flex;
-                flex-direction: column;
-                }
-
-                .hole-input{
-                    margin: 15px;
-                    width: 50px;
-                    height: 30px;
-                    justify-content: space-between;
-                }
-                
-                }
-
-
-
-
-                
-        }
-    }
-}
-.submit-container{
+  .addscore-content-container {
+    z-index: 5;
+    flex-direction: row;
     display: flex;
-    position: absolute;
-    right: 0px;
-    bottom: 0px;
-    padding: 30px;
-    border-left: 5px solid black;
-    border-top: 5px solid black;
-    width: 200px;
-    border-top-left-radius: 30px;
-    background-color: white;
-    justify-content: center;
-    align-content: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
 
-    :hover{
-        cursor: pointer;
+    .page-description {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+
+      .page-flag {
+        position: absolute;
+        z-index: 10;
+        
+        bottom: 0px;
+        right: 10px;
+
+        .flag{
+          width: 100%;
+        }
+      }
     }
+
+
+    .page-title {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 20vw;
+      background-color: white;
+      border: 5px solid black;
+      position: absolute;
+      left: 70px;
+      bottom: 20px;
+      z-index: 5;
+      text-align: end;
+      padding: 20px;
+
+    }
+
+    .page-number {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 5px solid black;
+      border-radius: 50%;
+      background-color: white;
+      width: 100px;
+      height: 100px;
+      position: relative;
+      z-index: 6;
+
+      
+    }
+
+    .input-container {
+      position: absolute;
+      width: 70vw;
+      height: 85vh;
+      border-left: 5px solid black;
+      border-top: 5px solid black;
+      background-color: rgba(255, 255, 255, 0.75);
+      right: 0px;
+      bottom: 0px;
+      border-top-left-radius: 50px;
+      padding: 20px;
+
+      .course-selector {
+        height: 30px;
+        margin-left: 50px;
+        display: flex;
+        flex-direction: row;
+
+        .course-selector-input {
+          margin-left: 15px;
+          width: 250px;
+          height: 40px;
+          border: 3px solid black;
+          border-radius: 10px
+        }
+      }
+
+      .hole-inputs {
+        width: 90%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        margin: 20px;
+
+        .holes-side1 {
+          margin: 10px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          height: fit-content;
+        }
+
+        .holes-side2 {
+          width: 40%;
+          margin: 10px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          height: fit-content;
+        }
+
+        .hole-input {
+          margin: 10px;
+          width: 50px;
+          height: 25px;
+          justify-content: space-between;
+          border: 3px solid black;
+          border-radius: 10px
+        }
+      }
+    }
+  }
 }
 
-@keyframes background-image-change{
-    from{
-        background-size: 30%;
+.submit-container {
+  display: flex;
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  padding: 30px;
+  border-left: 5px solid black;
+  border-top: 5px solid black;
+  width: 15vw;
+  border-top-left-radius: 30px;
+  background-color: white;
+  justify-content: center;
+  align-content: center;
+
+  :hover {
+    cursor: pointer;
+  }
+}
+
+.check-score-overlay {
+ 
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  
+
+  h1 {
+    font-size: 3rem;
+  }
+
+  .check-score-content-container {
+    flex-direction: row;
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    .score-container {
+      overflow-y: scroll;
+      position: absolute;
+      width: 50vw;
+      height: 90vh;
+      border-right: 5px solid black;
+      border-top: 5px solid black;
+      border-top-right-radius: 30px;
+      bottom: 0;
+      background-color: rgba(255, 255, 255, 0.75);
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+
+      .score-table {
+        position: relative;
+        width: 90%;
+        height: fit-content;
+        margin: 20px;
+
+        // border: 4px solid black;
+        border-radius: 20px;
+
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        background-color: rgb(253, 183, 198);
+
+
+      }
+      .table-course {
+        border-right: 2px solid rgb(148, 89, 121);
+        border-top: 2px solid rgb(148, 89, 121);
+
+        grid-column: 1;
+
+      }
+      .table-hole {
+        border-right: 2px solid rgb(148, 89, 121);
+        border-top: 2px solid rgb(148, 89, 121);
+
+        grid-column: 3;
+
+      }
+
+      .table-score {
+        border-right: 2px solid rgb(148, 89, 121);
+        border-top: 2px solid rgb(148, 89, 121);
+
+        grid-column: 4 ;
+
+      }
+      .table-date {
+        border-right: 2px solid rgb(148, 89, 121);
+        border-top: 2px solid rgb(148, 89, 121);
+
+        grid-column: 2 ;
+
+      }
+
+      .table-par {
+        border-right: 2px solid rgb(148, 89, 121);
+        border-top: 2px solid rgb(148, 89, 121);
+
+        grid-column: 5;
+      }
+
+      .table-dist {
+        border-top: 2px solid rgb(148, 89, 121);
+      }
+
+      .top{
+        border: none;
+      }
+
+      .score-card {
+        position: relative;
+        width: 45%;
+        height: fit-content;
+        margin: 10px;
+        
+
+        // border: 4px solid black;
+        border-radius: 20px;
+
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        background-color: rgb(253, 183, 198);
+
+      }
+      .card-item {
+        text-align: center;
+        height: 30px;
+
+
+      }
+
+      .card-title {
+        grid-row: 1;
+        grid-column: 1 / span 3;
+      }
+
+      .card-total {
+        grid-row: 1;
+        grid-column: 4;
+      }
+
+      .card-total-number {
+        grid-row: 1;
+        grid-column: 5;
+      }
+
+      .card-hole {
+        border-right: 2px solid rgb(148, 89, 121);
+        border-top: 2px solid rgb(148, 89, 121);
+
+        grid-column: 1;
+
+      }
+
+      .card-score {
+        border-right: 2px solid rgb(148, 89, 121);
+        border-top: 2px solid rgb(148, 89, 121);
+
+        grid-column: 2 / span 2;
+
+      }
+
+      .card-par {
+        border-right: 2px solid rgb(148, 89, 121);
+        border-top: 2px solid rgb(148, 89, 121);
+
+        grid-column: 4;
+      }
+
+      .card-dist {
+        border-top: 2px solid rgb(148, 89, 121);
+      }
+
+
+
+      ::-webkit-scrollbar {
+        display: none;
+      }
+
     }
-    to{
-        background-size: 100%;
+
+    .filter-selector-container {
+      position: absolute;
+
+      right: 0;
+      bottom: 15%;
+      height: 55vh;
+      width: 50vw;
+      display: flex;
+      flex-direction: column;
+
+      .course-selector-input {
+        position: relative;
+        margin: 10px;
+        height: 40px;
+        width: 50%;
+        left: 10%;
+        font-size: 1rem;
+        border: 3px solid black;
+        border-radius: 10px
+      }
+
+
     }
+
+    .page-description {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+
+      .page-flag {
+        position: absolute;
+        z-index: 10;
+        
+        bottom: 0px;
+        right: 5px;
+        -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+
+        .flag{
+          width: 100%;
+        }
+      }
+    }
+
+
+    .page-title {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 20vw;
+      background-color: white;
+      border: 5px solid black;
+      position: absolute;
+      right: 70px;
+      bottom: 20px;
+      z-index: 5;
+      text-align: start;
+      padding: 20px;
+
+    }
+
+    .page-number {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 5px solid black;
+      border-radius: 50%;
+      background-color: white;
+      width: 100px;
+      height: 100px;
+      position: relative;
+      z-index: 6;
+
+      
+    }
+
+
+  }
+
+
+}
+
+.fa-arrow-left {
+  position: absolute;
+  font-size: 3rem;
+  z-index: 10;
+  margin: 0.6%;
+}
+
+
+@keyframes backgroundShiftBigAddScore {
+  0%{
+    transform:  scale(1.6);
+    transform-origin: top ;
+    left: 30vw;
+  
+  }
+  100%{
+    transform:  scale(4);
+    transform-origin: top ;
+    left: 70vw;
+
+  }
+  
+}
+
+@keyframes backgroundShiftSmallAddScore {
+  0%{
+    transform:  scale(4);
+    transform-origin: top ;
+    left: 70vw;
+
+  }
+  100%{
+    transform:  scale(1.6);
+    transform-origin: top ;
+    left: 30vw;
+  }
+  
+}
+@keyframes backgroundShiftBigCheckScore {
+  0%{
+   transform: scale(1.6);
+   transform-origin: top;
+   top: 5vh;
+   left: 30vw;
+  
+   
+  }
+  100%{
+    transform:  scale(4.8);
+    transform-origin: top ;
+    top: -70vh;
+    left: -10vw;
+
+  }
+  
+}
+
+@keyframes backgroundShiftSmallCheckScore {
+  0%{
+    transform:  scale(4.8);
+    transform-origin: top ;
+    top: -70vh;
+    left: -10vw;
+
+  }
+  100%{
+    transform: scale(1.6);
+    transform-origin: top;
+    top: 5vh;
+    left: 30vw;
+  }
+  
+}
+
+@keyframes open-page-title{
+  0%{
+    width: 0vw;
+  }
+  100%{
+    width: 20vw;
+  }
+  
 }
